@@ -34,3 +34,5 @@ unix {
 
 DISTFILES += \
     liblouis/Makefile.am
+
+macx:DEFINES += TABLESDIR=/usr/local/share/liblouis/tables
