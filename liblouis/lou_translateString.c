@@ -2250,7 +2250,7 @@ undefinedCharacter(widechar c, const TranslationTableHeader *table, int pos,
 
 	const char *text = (mode & noUndefined) ? "" : _lou_showString(&c, 1, 1);
 	size_t length = strlen(text);
-	widechar dots[length];
+    widechar *dots = (widechar*)malloc(sizeof(widechar)*length);
 
 	for (unsigned int k = 0; k < length; k += 1) {
 		dots[k] = 0;
@@ -2270,8 +2270,10 @@ undefinedCharacter(widechar c, const TranslationTableHeader *table, int pos,
 		if (!dots[k]) dots[k] = _lou_charToFallbackDots(text[k]);
 	}
 
-	return for_updatePositions(dots, 1, length, 0, pos, input, output, posMapping,
+    int res = for_updatePositions(dots, 1, length, 0, pos, input, output, posMapping,
 			cursorPosition, cursorStatus);
+    free(dots);
+    return res;
 }
 
 static int
