@@ -1,3 +1,5 @@
+QMAKE_PROJECT_DEPTH = 0 # force absolute paths
+
 QT -= gui
 
 TEMPLATE = lib
@@ -18,7 +20,12 @@ SOURCES += \
     liblouis/maketable.c \
     liblouis/metadata.c \
     liblouis/pattern.c \
-    liblouis/utils.c
+    liblouis/utils.c \
+    tools/gnulib/unistr/u16-mbtoucr.c \
+    tools/gnulib/unistr/u32-to-u8.c \
+    tools/gnulib/unistr/u8-uctomb.c \
+    tools/gnulib/unistr/u16-to-u8.c \
+    tools/gnulib/unistr/u8-uctomb-aux.c
 
 HEADERS += \
     liblouis/internal.h \
@@ -26,13 +33,9 @@ HEADERS += \
     liblouis/liblouis.h.in \
     liblouis_global.h
 
-# Default rules for deployment.
-unix {
-    target.path = /usr/lib
-}
-!isEmpty(target.path): INSTALLS += target
-
 DISTFILES += \
     liblouis/Makefile.am
 
 macx:DEFINES += TABLESDIR=\\\"/usr/local/share/liblouis/tables\\\"
+
+INCLUDEPATH += $$PWD/liblouis $$PWD/tools/gnulib

@@ -17,6 +17,16 @@
 #ifndef _UNISTR_H
 #define _UNISTR_H
 
+#ifdef _MSC_VER
+#ifdef _EXPORTING
+#define LIBLOUIS_API __declspec(dllexport)
+#else
+#define LIBLOUIS_API __declspec(dllimport)
+#endif
+#else
+#define LIBLOUIS_API
+#endif
+
 #include "unitypes.h"
 
 /* Get common macros for C.  */
@@ -95,7 +105,7 @@ extern uint32_t *
                   size_t *lengthp);
 
 /* Convert an UTF-16 string to an UTF-8 string.  */
-extern uint8_t *
+extern LIBLOUIS_API uint8_t *
        u16_to_u8 (const uint16_t *s, size_t n, uint8_t *resultbuf,
                   size_t *lengthp);
 
@@ -105,7 +115,7 @@ extern uint32_t *
                    size_t *lengthp);
 
 /* Convert an UCS-4 string to an UTF-8 string.  */
-extern uint8_t *
+extern LIBLOUIS_API uint8_t *
        u32_to_u8 (const uint32_t *s, size_t n, uint8_t *resultbuf,
                   size_t *lengthp);
 
