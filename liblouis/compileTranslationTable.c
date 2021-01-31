@@ -1335,6 +1335,7 @@ parseChars(FileInfo *nested, CharsString *result, CharsString *token) {
 	return 1;
 }
 
+LIBLOUIS_API
 int EXPORT_CALL
 _lou_extParseChars(const char *inString, widechar *outString) {
 	/* Parse external character strings */

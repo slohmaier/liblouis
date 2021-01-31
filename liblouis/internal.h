@@ -773,6 +773,7 @@ _lou_findOpcodeName(TranslationTableOpcode opcode);
  * @param outString the output wide char sequence
  * @return length of the widechar sequence.
  */
+LIBLOUIS_API
 int EXPORT_CALL
 _lou_extParseChars(const char *inString, widechar *outString);
 
