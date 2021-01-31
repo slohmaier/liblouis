@@ -28,6 +28,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+LIBLOUIS_API
 DST_UNIT *
 FUNC (const SRC_UNIT *s, size_t n, DST_UNIT *resultbuf, size_t *lengthp)
 {

@@ -45,6 +45,7 @@ win32|win64: {
     unitypes_h.commands = cp -vf $$PWD/tools/gnulib/unitypes.in.h $$PWD/tools/gnulib/unitypes.h
     QMAKE_EXTRA_TARGETS += unitypes_h
     PRE_TARGETDEPS += $$PWD/tools/gnulib/unitypes.h
+    DEFINES += _EXPORTING
 }
 
 macx:DEFINES += TABLESDIR=\\\"/usr/local/share/liblouis/tables\\\"
