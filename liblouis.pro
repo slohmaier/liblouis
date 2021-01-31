@@ -29,12 +29,23 @@ SOURCES += \
 
 HEADERS += \
     liblouis/internal.h \
-    liblouis/liblouis.h \
-    liblouis/liblouis.h.in \
-    liblouis_global.h
+    liblouis/liblouis.h
 
-DISTFILES += \
-    liblouis/Makefile.am
+win32|win64:HEADERS += windows/include/config.h
+else:HEADERS += liblouis/config.h
+win32|win64: {
+    INCLUDEPATH += windows/include
+
+    unistr_h.target = $$PWD/tools/gnulib/unistr.h
+    unistr_h.commands = cp -vf $$PWD/tools/gnulib/unistr.in.h $$PWD/tools/gnulib/unistr.h
+    QMAKE_EXTRA_TARGETS += unistr_h
+    PRE_TARGETDEPS += $$PWD/tools/gnulib/unistr.h
+
+    unitypes_h.target = $$PWD/tools/gnulib/unitypes.h
+    unitypes_h.commands = cp -vf $$PWD/tools/gnulib/unitypes.in.h $$PWD/tools/gnulib/unitypes.h
+    QMAKE_EXTRA_TARGETS += unitypes_h
+    PRE_TARGETDEPS += $$PWD/tools/gnulib/unitypes.h
+}
 
 macx:DEFINES += TABLESDIR=\\\"/usr/local/share/liblouis/tables\\\"
 
