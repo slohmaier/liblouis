@@ -48,6 +48,6 @@ win32|win64: {
     DEFINES += _EXPORTING
 }
 
-macx:DEFINES += TABLESDIR=\\\"/usr/local/share/liblouis/tables\\\"
+linux|macx:DEFINES += TABLESDIR=\\\"/usr/local/share/liblouis/tables\\\"
 
 INCLUDEPATH += $$PWD/liblouis $$PWD/tools/gnulib
